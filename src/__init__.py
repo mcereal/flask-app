@@ -1,3 +1,7 @@
+"""
+App creation
+"""
+
 import os
 
 from flask import Flask
@@ -5,7 +9,7 @@ from .db import database
 
 
 def create_app(test_config=None):
-    # create and configure the app
+    """App creation function"""
     app = Flask(__name__, instance_relative_config=True)
     database.init_db()
 

@@ -5,13 +5,13 @@ App creation
 import os
 
 from flask import Flask
-from .db import database
+from . import db
 
 
 def create_app(test_config=None):
     """App creation function"""
     app = Flask(__name__, instance_relative_config=True)
-    database.init_db()
+    db.init_db()
 
     app.config.from_mapping(
         SECRET_KEY='dev',
@@ -33,7 +33,7 @@ def create_app(test_config=None):
 
     @app.teardown_appcontext
     def shutdown_session(exception=None):
-        database.db_session.remove()
+        db.db_session.remove()
     # a simple page that says hello
 
     @app.route('/hello')
